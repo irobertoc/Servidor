@@ -43,7 +43,6 @@ class ProductManager {
         const products = this._readFile();
         const productIndex = products.findIndex((product) => product.id === id);
         if (productIndex !== -1) {
-            // Avoid changing the product's ID
             delete updatedFields.id;
             products[productIndex] = { ...products[productIndex], ...updatedFields };
             this._writeFile(products);
@@ -63,11 +62,9 @@ class ProductManager {
     }
 }
 
-// Ejemplo de uso:
 const pathToProductsFile = 'productos.json';
 const productManager = new ProductManager(pathToProductsFile);
 
-// Agregar un producto
 const product1 = {
     title: 'Producto 1',
     description: 'Descripción del Producto 1',
@@ -78,16 +75,13 @@ const product1 = {
 };
 productManager.addProduct(product1);
 
-// Consultar todos los productos
 const allProducts = productManager.getProducts();
 console.log(allProducts);
 
-// Consultar un producto por ID
 const productIdToFind = 1;
 const productFound = productManager.getProductById(productIdToFind);
 console.log(productFound);
 
-// Actualizar un producto
 const productIdToUpdate = 1;
 const updatedFields = {
     price: 12.99,
@@ -95,6 +89,5 @@ const updatedFields = {
 };
 productManager.updateProduct(productIdToUpdate, updatedFields);
 
-// Eliminar un producto por ID
 const productIdToDelete = 1;
 productManager.deleteProduct(productIdToDelete);
